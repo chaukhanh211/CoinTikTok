@@ -21,7 +21,7 @@
       <span class="transaction-history">View transaction history</span>
     </div>
     
-    <input type="text" class="username-input" placeholder="Enter Username" value="abou.fofana602">
+    <input type="text" class="username-input" placeholder="Enter Username" value="">
     
     <div class="discount-info" style="padding: 0 16px; margin-bottom: 10px; font-size: 13px; color: #666;">
       <p><b>Recharge:</b> <span style="color: #ff4d4f; padding-left: 1px;">Save up to 15% compared to in-app purchase</span>  </p>
@@ -125,7 +125,7 @@
       <div class="total-section">
         Total: $ <span id="totalAmount">650.00</span>
       </div>
-      <button class="recharge-btn-modal" onclick="showLoadingModal()">Recharge</button>
+      <button class="recharge-btn-modal" onclick="showPaymentMethodModal()">Recharge</button>
     </div>
   </div>
   
@@ -154,5 +154,54 @@
       </div>
     </div>
   </div>
+
+  <!-- Payment Method Modal -->
+<div class="modal-overlay" id="paymentMethodModal">
+  <div class="modal">
+    <div class="modal-title">
+      Order summary
+      <span class="close-btn" onclick="closeModal('paymentMethodModal')">&times;</span>
+    </div>
+    
+    <div class="order-summary">
+      <div class="order-item">
+        <div>Coins</div>
+        <div><span id="summaryCoins">0</span> Coins</div>
+      </div>
+      <div class="order-item-total">
+        <div>Total</div>
+        <div>$ <span id="summaryTotal">0.00</span></div>
+      </div>
+    </div>
+    
+    <div class="payment-methods">
+      <div class="payment-method-title">Select payment method</div>
+      
+      <div class="payment-method-item selected" onclick="selectPaymentMethod(this)">
+        <img src="image/visa-logo-preview.png" alt="Visa">
+        <div class="payment-method-details">
+          <div>Visa</div>
+          <div class="card-number">•••• •••• •••• 1895</div>
+        </div>
+      </div>
+      
+      <div class="payment-method-item" onclick="selectPaymentMethod(this)">
+        <img src="image/mastercard.png" alt="Mastercard">
+        <div class="payment-method-details">
+          <div>Mastercard</div>
+          <div class="card-number">•••• •••• •••• 3487</div>
+        </div>
+      </div>
+      
+      <div class="add-card-btn" onclick="alert('Add new card functionality would be implemented here')">
+        <div class="plus-icon">+</div>
+        <span>Add new payment method</span>
+      </div>
+    </div>
+    
+    <button class="recharge-btn-modal" onclick="showLoadingModal()">Recharge</button>
+  </div>
+  </div>
+
 </body>
 </html>
