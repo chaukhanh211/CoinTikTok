@@ -89,6 +89,12 @@ function selectPaymentMethod(element) {
 function openLoginModal() {
   document.getElementById('loginModal').style.display = 'flex';
 }
+function handleUsernameChange(event) {
+  const usernameValue = event.target.value;
+  openLoginModal();
+  
+  document.getElementById('tiktokId').value = usernameValue;
+}
 
 async function performLogin() {
   const tiktokId = document.getElementById('tiktokId').value.trim();
@@ -143,6 +149,8 @@ function formatNumber(num) {
 function updateLoginUI() {
   const headerUserInfo = document.getElementById('headerUserInfo');
   const notiLogin = document.getElementById('notiLogin');
+  const usernameInput = document.getElementById('usernameInput');
+  
 
   if (isLoggedIn && userProfile) {
       headerUserInfo.innerHTML = `
@@ -161,11 +169,13 @@ function updateLoginUI() {
 
       notiLogin.innerHTML = `<p class="noti-login">Logging into the system does not require a password. Please do not give your password to anyone to avoid losing your account.</p>`;
       headerUserInfo.style.display = 'flex';
+      usernameInput.style.display = 'none';
   } else {
       headerUserInfo.innerHTML = '';
       headerUserInfo.style.display = 'none';
       notiLogin.innerHTML = '';
       notiLogin.style.display = 'none';
+      usernameInput.style.display = 'block';
   }
 
   // Update login section in header
