@@ -8,14 +8,40 @@
   <script src="script.js"></script>
 </head>
 <body>
+  <!-- Login Modal -->
+  <div class="modal-overlay" id="loginModal">
+    <div class="modal login-modal">
+      <div class="modal-title">
+        <span>Login TikTok</span>
+        <span class="close-btn" onclick="closeModal('loginModal')">×</span>
+      </div>
+      <div class="login-form">
+        <input type="text" id="tiktokId" placeholder="Enter TikTok account ID (eg username)">
+        <button class="login-btn" onclick="performLogin()">Login</button>
+      </div>
+      <div class="login-note">
+        <p>Logging into the system does not require a password. Please do not give your password to anyone.</p>
+      </div>
+    </div>
+  </div>
+
   <div class="container">
     <div class="header">
       <div> <img src="./image/1200px-TikTok_logo.svg.png" style="width: 60px;" alt=""></div>
       <div class="search-box">
         <span class="search-text">Search</span>
       </div>
+      <!-- <div class="login-section">
+        <button class="login-btn" onclick="openLoginModal()">Login</button>
+      </div> -->
     </div>
-    
+      <!-- Add profile section here -->
+    <div id="headerUserInfo" class="user-profile-section">
+      <!-- Profile information will be dynamically inserted here -->
+      
+    </div>
+    <div id="notiLogin"></div>
+
     <div class="header-title">
       <h2>Get Coins</h2>
       <span class="transaction-history">View transaction history</span>
@@ -26,6 +52,8 @@
     <div class="discount-info" style="padding: 0 16px; margin-bottom: 10px; font-size: 13px; color: #666;">
       <p><b>Recharge:</b> <span style="color: #ff4d4f; padding-left: 1px;">Save up to 15% compared to in-app purchase</span>  </p>
     </div>
+
+  
     
     <div class="coin-options">
       <div class="coin-option" onclick="selectOption(this, 70, 0.91)">

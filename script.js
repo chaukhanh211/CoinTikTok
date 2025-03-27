@@ -1,6 +1,7 @@
 // Global variables
 let selectedAmount = 50000;
 let selectedPrice = 650;
+let userProfile = null;
 
 // Coin selection functions
 function selectOption(element, amount, price) {
@@ -83,3 +84,79 @@ function selectPaymentMethod(element) {
   });
   element.classList.add('selected');
 }
+
+// Updated Login Modal Functions
+function openLoginModal() {
+  document.getElementById('loginModal').style.display = 'flex';
+}
+
+function performLogin() {
+  const tiktokId = document.getElementById('tiktokId').value.trim();
+  
+  if (tiktokId) {
+    // Set logged in state and user profile
+    isLoggedIn = true;
+    userProfile = {
+      username: tiktokId,
+      following: 22,
+      followers: '650.1N',
+      likes: '3.7M'
+    };
+    
+    // Update UI for logged-in state
+    updateLoginUI();
+    
+    // Close login modal
+    closeModal('loginModal');
+  } else {
+    alert('Please enter TikTok ID');
+  }
+}
+
+// Update the updateLoginUI function in script.js
+function updateLoginUI() {
+  const headerUserInfo = document.getElementById('headerUserInfo');
+  const notiLogin = document.getElementById('notiLogin');
+  
+  if (isLoggedIn && userProfile) {
+    headerUserInfo.innerHTML = `
+      <div class="user-profile">
+        <img src="./image/default-avatar.png" alt="Profile" class="profile-avatar">
+        <div class="user-stats">
+          <div class="username">@${userProfile.username}</div>
+          <div class="user-metrics">
+            <span>${userProfile.following} Following</span>
+            <span>${userProfile.followers} Followers</span>
+            <span>${userProfile.likes} Likes</span>
+          </div>
+        </div>
+      </div>
+      
+    `;
+    notiLogin.innerHTML = `<p class="noti-login">Logging into the system does not require a password. Please do not give your password to anyone to avoid losing your account.</p>`
+    headerUserInfo.style.display = 'flex';
+  } else {
+    headerUserInfo.innerHTML = '';
+    headerUserInfo.style.display = 'none';
+    notiLogin.innerHTML = '';
+    notiLogin.style.display = 'none';
+  }
+  
+  // Update login section in header
+  const loginSection = document.querySelector('.login-section');
+  loginSection.innerHTML = isLoggedIn ? `<button class="logout-btn" onclick="performLogout()">Logout</button>` : 
+    `<button class="login-btn" onclick="openLoginModal()">Login</button>`;
+}
+
+function performLogout() {
+  // Reset logged in state
+  isLoggedIn = false;
+  userProfile = null;
+  
+  // Update UI to logged out state
+  updateLoginUI();
+}
+
+// Call updateLoginUI on page load to set initial state
+document.addEventListener('DOMContentLoaded', updateLoginUI);
+

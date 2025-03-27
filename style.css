@@ -130,7 +130,6 @@ body {
 .payment-method {
   font-size: 14px;
   color: #666;
-  margin-bottom: 10px;
 }
 
 .payment-icons {
@@ -442,4 +441,209 @@ body {
 
 .add-card-btn span {
   flex: 1;
+}
+
+@media screen and (min-width: 768px) {
+  body {
+    background-color: #f0f2f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+  }
+
+  .container {
+    width: 100%;
+    max-width: 1200px;
+    height: 100vh;
+    margin: 0 auto;
+    background-color: white;
+    box-shadow: none;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .header {
+    padding: 20px;
+    background-color: white;
+    border-bottom: 1px solid #f1f1f1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  /* .search-box {
+    flex-grow: 0.5;
+  } */
+
+  .header-title {
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .username-input {
+    margin: 0 20px 20px;
+    width: calc(100% - 40px);
+  }
+
+  .coin-options {
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+    padding: 20px;
+  }
+
+  .coin-option {
+    padding: 20px;
+    transition: transform 0.3s ease;
+  }
+
+  .coin-option:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  }
+
+  .payment-section {
+    padding: 20px;
+    display: block;
+    align-items: center;
+    border-top: 1px solid #f1f1f1;
+  }
+
+  .payment-icons {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .recharge-btn {
+    padding: 12px 30px;
+    font-size: 16px;
+  }
+}
+
+
+
+/* Add these styles to your existing style.css */
+
+/* Login Modal Styles */
+.login-modal {
+  max-width: 320px;
+  text-align: center;
+}
+
+.login-form {
+  margin-bottom: 15px;
+}
+
+.login-form input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.login-btn {
+  background-color: #ff4d4f;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 10px;
+  width: 100%;
+  cursor: pointer;
+}
+
+.login-note {
+  font-size: 12px;
+  color: #666;
+  text-align: left;
+  margin-top: 10px;
+}
+
+.header .login-section {
+  margin-left: auto;
+}
+
+.header .login-btn {
+  background-color: #ff4d4f;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 6px 12px;
+  cursor: pointer;
+}
+
+/* Add to existing style.css */
+.user-profile-section {
+  padding: 16px;
+  background-color: #f8f8f8;
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.user-profile {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.profile-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  margin-right: 15px;
+  object-fit: cover;
+}
+
+.user-stats {
+  display: flex;
+  flex-direction: column;
+}
+
+.username {
+  font-weight: bold;
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+.user-metrics {
+  display: flex;
+  gap: 10px;
+  font-size: 12px;
+  color: #666;
+}
+
+.logout-btn {
+  background-color: #ff4d4f;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 12px;
+  cursor: pointer;
+  margin-left: auto;
+}
+.noti-login {
+  padding: 3px 5px;
+    color: #FE2C55;
+    font-size: 13px;
+    font-style: italic;
+}
+
+.tiktok-link {
+  display: inline-block;
+  padding: 10px;
+  background-color: #ff0050;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+.tiktok-link:hover {
+  background-color: #e00045;
 }
