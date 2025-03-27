@@ -608,14 +608,14 @@ body {
 
 .username {
   font-weight: bold;
-  font-size: 16px;
+  font-size: 20px;
   margin-bottom: 5px;
 }
 
 .user-metrics {
   display: flex;
   gap: 10px;
-  font-size: 12px;
+  font-size: 18px;
   color: #666;
 }
 
@@ -647,4 +647,57 @@ body {
 
 .tiktok-link:hover {
   background-color: #e00045;
+}
+
+@media screen and (min-width: 768px) {
+  /* Tăng font size cho các phần tử chính */
+  .container {
+    font-size: 20px; /* Tăng font size cơ bản */
+  }
+
+  .header-title h2 {
+    font-size: 28px; /* Tăng size tiêu đề */
+  }
+
+  .coin-option {
+    font-size: 20px; /* Tăng size chữ trong các option coin */
+  }
+
+  .coin-amount span {
+    font-size: 20px; /* Tăng size chữ số lượng coin */
+  }
+
+  .coin-price {
+    font-size: 18px; /* Tăng size giá coin */
+  }
+
+  .payment-method {
+    font-size: 20px; /* Tăng size chữ phương thức thanh toán */
+  }
+
+  .modal-title {
+    font-size: 22px; /* Tăng size tiêu đề modal */
+  }
+
+  .payment-method-details {
+    font-size: 20px; /* Tăng size chữ chi tiết phương thức */
+  }
+
+  .order-summary {
+    font-size: 18px; /* Tăng size chữ phần tổng quan đơn hàng */
+  }
+
+  .recharge-btn, .recharge-btn-modal {
+    font-size: 20px; /* Tăng size chữ nút nạp tiền */
+  }
+
+  .login-form input, .username-input {
+    font-size: 18px; /* Tăng size input */
+  }
+  .discount-info{
+    font-size: 20px !important;
+  }
+  .header>div>img {
+    width: 170px !important;
+  }
 }
