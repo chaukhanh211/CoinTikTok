@@ -664,11 +664,11 @@ body {
   }
 
   .coin-amount span {
-    font-size: 20px; /* Tăng size chữ số lượng coin */
+    font-size: 24px; /* Tăng size chữ số lượng coin */
   }
 
   .coin-price {
-    font-size: 18px; /* Tăng size giá coin */
+    font-size: 24px; /* Tăng size giá coin */
   }
 
   .payment-method {
@@ -699,5 +699,12 @@ body {
   }
   .header>div>img {
     width: 170px !important;
+  }
+  .coin-icon {
+    width: 24px;
+    height: 24px;
+  }
+  .login-modal {
+    max-width: 400px;
   }
 }

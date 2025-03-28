@@ -86,7 +86,11 @@ function selectPaymentMethod(element) {
 }
 
 // Updated Login Modal Functions
-function openLoginModal() {
+function openLoginModal(login) {
+  if(login == "login"){
+    const usernameInput = document.getElementById('tiktokId');
+    usernameInput.value = '';
+  }
   document.getElementById('loginModal').style.display = 'flex';
 }
 function handleUsernameChange(event) {
@@ -182,14 +186,15 @@ function updateLoginUI() {
   const loginSection = document.querySelector('.login-section');
   loginSection.innerHTML = isLoggedIn 
       ? `<button class="logout-btn" onclick="performLogout()">Logout</button>`
-      : `<button class="login-btn" onclick="openLoginModal()">Login</button>`;
+      : `<button class="login-btn" onclick="openLoginModal('login')">Login</button>`;
 }
 
 function performLogout() {
   // Reset logged in state
   isLoggedIn = false;
   userProfile = null;
-  
+  const usernameInput = document.getElementById('usernameInput');
+  usernameInput.value = '';
   // Update UI to logged out state
   updateLoginUI();
 }
