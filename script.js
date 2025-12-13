@@ -2,6 +2,7 @@
 let selectedAmount = 50000;
 let selectedPrice = 650;
 let userProfile = null;
+let isLoggedIn = false;
 
 // Coin selection functions
 function selectOption(element, amount, price) {
