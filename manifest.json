@@ -1,12 +1,13 @@
 {
-  "name": "TikTok Coin Recharge",
+   "name": "TikTok Coin Recharge",
   "short_name": "CoinTik",
-  "start_url": "/",
-  "scope": "/",
+  "start_url": ".",
+  "scope": ".",
   "display": "standalone",
   "background_color": "#000000",
   "theme_color": "#000000",
   "orientation": "portrait",
+  "prefer_related_applications": false,
   "icons": [
     {
       "src": "/image/coin.png",
