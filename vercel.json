@@ -1,20 +1,11 @@
 {
   "headers": [
     {
-      "source": "/manifest.json",
+      "source": "/(.*)",
       "headers": [
         {
-          "key": "Content-Type",
-          "value": "application/manifest+json"
-        }
-      ]
-    },
-    {
-      "source": "/sw.js",
-      "headers": [
-        {
-          "key": "Content-Type", 
-          "value": "application/javascript"
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
         }
       ]
     }
