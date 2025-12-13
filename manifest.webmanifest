@@ -11,13 +11,13 @@
   "id": "/",
   "icons": [
     {
-      "src": "/image/coin.png",
+      "src": "/image/1200px-TikTok_logo.svg.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "/image/coin.png",
+      "src": "/image/1200px-TikTok_logo.svg.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any"
