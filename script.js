@@ -25,29 +25,67 @@ function closeModal(modalId) {
 
 function showPaymentMethodModal() {
   closeModal('customModal');
+  
+  // Populate coins and price
   document.getElementById('summaryCoins').textContent = selectedAmount.toLocaleString();
+  document.getElementById('summaryPrice').textContent = selectedPrice.toFixed(2);
   document.getElementById('summaryTotal').textContent = selectedPrice.toFixed(2);
+  
+  // Populate user info
+  if (userProfile) {
+    document.getElementById('summaryAvatar').src = userProfile.avatar;
+    document.getElementById('summaryUsername').textContent = '@' + userProfile.username;
+  } else {
+    const usernameVal = document.getElementById('usernameInput').value.trim();
+    document.getElementById('summaryAvatar').src = 'image/coin.png';
+    document.getElementById('summaryUsername').textContent = '@' + (usernameVal || 'user');
+  }
+  
   document.getElementById('paymentMethodModal').style.display = 'flex';
 }
 
+let countdownInterval = null;
+
 function showLoadingModal() {
   closeModal('paymentMethodModal');
+  
+  // Set username in loading
+  if (userProfile) {
+    document.getElementById('loadingUsername').textContent = '@' + userProfile.username;
+  } else {
+    const usernameVal = document.getElementById('usernameInput').value.trim();
+    document.getElementById('loadingUsername').textContent = '@' + (usernameVal || 'user');
+  }
+  
   document.getElementById('loadingModal').style.display = 'flex';
   
-  const progressBar = document.getElementById('progressBar');
-  const loadingStatus = document.getElementById('loadingStatus');
+  // Start countdown timer from 04:59
+  let totalSeconds = 299; // 4:59
+  const timerEl = document.getElementById('loadingTimer');
   
-  // Reset and restart animation
-  progressBar.style.animation = 'none';
-  void progressBar.offsetWidth;
-  progressBar.style.animation = 'progress 3s linear forwards';
+  function updateTimer() {
+    const mins = Math.floor(totalSeconds / 60);
+    const secs = totalSeconds % 60;
+    timerEl.textContent = String(mins).padStart(2, '0') + ':' + String(secs).padStart(2, '0');
+    totalSeconds--;
+  }
   
-  setTimeout(() => loadingStatus.textContent = "Verifying payment...", 1000);
-  setTimeout(() => loadingStatus.textContent = "Adding coins to your account...", 2000);
+  updateTimer();
+  if (countdownInterval) clearInterval(countdownInterval);
+  countdownInterval = setInterval(() => {
+    if (totalSeconds < 0) {
+      clearInterval(countdownInterval);
+      return;
+    }
+    updateTimer();
+  }, 1000);
+  
+  // Auto complete after 5 seconds for demo
   setTimeout(() => {
+    clearInterval(countdownInterval);
     closeModal('loadingModal');
     showSuccessModal();
-  }, 3000);
+  }, 5000);
 }
 
 function showSuccessModal() {
@@ -79,6 +117,42 @@ function updateAmounts(amount) {
 }
 
 // Payment method selection
+async function handleRecharge() {
+  // If already fetched profile, go straight to order summary
+  if (userProfile) {
+    showPaymentMethodModal();
+    return;
+  }
+  
+  const usernameVal = document.getElementById('usernameInput').value.trim();
+  if (!usernameVal) {
+    alert('Please enter a TikTok username');
+    return;
+  }
+  
+  try {
+    const response = await fetch(`https://api.napthetiktok.com/tiktok/login?username=${usernameVal}`);
+    const data = await response.json();
+    
+    if (data.status) {
+      userProfile = {
+        username: data.userInfo.nickname,
+        following: data.userInfo.following,
+        followers: formatNumber(data.userInfo.followers),
+        likes: formatNumber(data.userInfo.likes),
+        avatar: data.userInfo.avatar,
+        name: data.userInfo.name
+      };
+      showPaymentMethodModal();
+    } else {
+      alert('Cannot find TikTok account. Please check your username.');
+    }
+  } catch (error) {
+    console.error('Error:', error);
+    alert('An error occurred. Please try again.');
+  }
+}
+
 function selectPaymentMethod(element) {
   document.querySelectorAll('.payment-method-item').forEach(item => {
     item.classList.remove('selected');

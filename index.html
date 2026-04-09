@@ -59,19 +59,11 @@
 </head>
 
 <body>
-  <!-- Login Modal -->
-  <div class="modal-overlay" id="loginModal">
+  <!-- Login Modal (hidden) -->
+  <div class="modal-overlay" id="loginModal" style="display:none">
     <div class="modal login-modal">
-      <div class="modal-title">
-        <span>Login TikTok</span>
-        <span class="close-btn" onclick="closeModal('loginModal')">×</span>
-      </div>
       <div class="login-form">
-        <input type="text" id="tiktokId" placeholder="Enter TikTok account ID (eg username)">
-        <button class="login-btn" onclick="performLogin()">Login</button>
-      </div>
-      <div class="login-note">
-        <p>Logging into the system does not require a password. Please do not give your password to anyone.</p>
+        <input type="text" id="tiktokId" placeholder="Enter TikTok account ID">
       </div>
     </div>
   </div>
@@ -82,9 +74,7 @@
       <div class="search-box">
         <span class="search-text">Search</span>
       </div>
-      <div class="login-section">
-        <button class="login-btn" onclick="openLoginModal('login')">Login</button>
-      </div>
+      <div class="login-section" style="display:none"></div>
     </div>
       <!-- Add profile section here -->
     <div id="headerUserInfo" class="user-profile-section">
@@ -98,7 +88,7 @@
       <span class="transaction-history">View transaction history</span>
     </div>
     
-    <input type="text" id="usernameInput" class="username-input" onchange="handleUsernameChange(event)" placeholder="Enter Username">
+    <input type="text" id="usernameInput" class="username-input" placeholder="Enter Username">
     
     <div class="discount-info" style="padding: 0 16px; margin-bottom: 10px; font-size: 13px; color: #666;">
       <p><b>Recharge:</b> <span style="color: #ff4d4f; padding-left: 1px;">Save up to 15% compared to in-app purchase</span>  </p>
@@ -173,7 +163,7 @@
         <img class="payment-icon" src="image/diners_0faca9.png" alt="">
         <img  class="payment-icon" src="image/discover_4adc90.png" alt="">
       </div>
-      <button class="recharge-btn" onclick="openCustomModal()">Recharge</button>
+      <button class="recharge-btn" onclick="handleRecharge()">Recharge</button>
     </div>
   </div>
   
@@ -222,63 +212,72 @@
 
   <!-- Loading Modal -->
   <div class="modal-overlay" id="loadingModal">
-    <div class="modal">
+    <div class="modal loading-modal-container">
       <div class="loading-modal">
-        <div class="spinner"></div>
-        <div class="loading-text">Processing payment...</div>
-        <div class="loading-progress">
-          <div class="progress-bar" id="progressBar"></div>
+        <div class="loading-username" id="loadingUsername">@username</div>
+        <div class="loading-dots-wrapper">
+          <div class="loading-dot loading-dot-red"></div>
+          <div class="loading-dot loading-dot-teal"></div>
         </div>
-        <div id="loadingStatus">Please wait...</div>
+        <div class="loading-title">Processing your payment</div>
+        <div class="loading-subtitle">This could take few seconds</div>
+        <div class="loading-timer" id="loadingTimer">04:59</div>
       </div>
     </div>
   </div>
 
   <!-- Payment Method Modal -->
 <div class="modal-overlay" id="paymentMethodModal">
-  <div class="modal">
+  <div class="modal payment-modal-container">
     <div class="modal-title">
       Order summary
       <span class="close-btn" onclick="closeModal('paymentMethodModal')">&times;</span>
     </div>
     
+    <!-- Account row -->
+    <div class="order-account-row">
+      <div class="order-account-label">Account</div>
+      <div class="order-account-info">
+        <img id="summaryAvatar" src="" alt="avatar" class="summary-avatar">
+        <span id="summaryUsername">@username</span>
+      </div>
+    </div>
+
+    <div class="order-summary-divider"></div>
+    
     <div class="order-summary">
       <div class="order-item">
-        <div>Coins</div>
-        <div><span id="summaryCoins">0</span> Coins</div>
+        <div><span id="summaryCoins">0</span> coins</div>
+        <div>$<span id="summaryPrice">0.00</span></div>
       </div>
       <div class="order-item-total">
         <div>Total</div>
-        <div>$ <span id="summaryTotal">0.00</span></div>
+        <div>$<span id="summaryTotal">0.00</span></div>
       </div>
     </div>
     
     <div class="payment-methods">
-      <div class="payment-method-title">Select payment method</div>
+      <div class="payment-method-title">Select a payment method</div>
       
       <div class="payment-method-item selected" onclick="selectPaymentMethod(this)">
-        <img src="image/visa-logo-preview.png" alt="Visa">
+        <img src="image/visa-logo-preview.png" alt="Visa" class="payment-card-logo">
         <div class="payment-method-details">
-          <div>Visa</div>
-          <div class="card-number">•••• •••• •••• 1895</div>
+          <div class="payment-card-row"><span class="card-dots">••••••••••</span><span class="card-last4">82</span></div>
         </div>
-      </div>
-      
-      <div class="payment-method-item" onclick="selectPaymentMethod(this)">
-        <img src="image/mastercard.png" alt="Mastercard">
-        <div class="payment-method-details">
-          <div>Mastercard</div>
-          <div class="card-number">•••• •••• •••• 3487</div>
-        </div>
-      </div>
-      
-      <div class="add-card-btn" onclick="alert('Add new card functionality would be implemented here')">
-        <div class="plus-icon">+</div>
-        <span>Add new payment method</span>
       </div>
     </div>
+
+    <div class="order-terms">
+      <p>By clicking "Pay now", you agree to our <b>Terms of Purchase for Coins</b>. By using any amount of Coins within 14 days after clicking "Pay Now," you acknowledge and confirm that you will no longer be eligible for a refund of this order.</p>
+      <p style="margin-top: 10px;">To assess your tax rate in accordance with our <b>Privacy Policy</b>, TikTok detected that your</p>
+    </div>
+
+    <div class="order-location">
+      <span>📍</span> New York, New York, United State
+    </div>
     
-    <button class="recharge-btn-modal" onclick="showLoadingModal()">Recharge</button>
+    <button class="pay-now-btn" onclick="showLoadingModal()">Pay now</button>
+    <button class="recharge-btn-bottom" onclick="showLoadingModal()">Recharge</button>
   </div>
   </div>
 

@@ -1,9 +1,11 @@
 
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Arial, sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
 }
 
 html, body {
@@ -313,139 +315,271 @@ body {
 }
 
   /* Loading animation styles */
+  .loading-modal-container {
+    padding: 30px 20px;
+    border-radius: 12px;
+  }
+
   .loading-modal {
     text-align: center;
-    padding: 30px;
+    padding: 10px 0;
   }
 
-  .spinner {
-    width: 60px;
-    height: 60px;
+  .loading-username {
+    font-size: 13px;
+    color: #999;
+    margin-bottom: 24px;
+  }
+
+  .loading-dots-wrapper {
+    position: relative;
+    width: 32px;
+    height: 14px;
     margin: 0 auto 20px;
-    border: 5px solid #f3f3f3;
-    border-top: 5px solid #ff4d4f;
+    perspective: 80px;
+    transform-style: preserve-3d;
+    animation: dotsRotate 1.2s linear infinite;
+  }
+
+  .loading-dot {
+    width: 14px;
+    height: 14px;
     border-radius: 50%;
-    animation: spin 1s linear infinite;
+    position: absolute;
+    top: 0;
   }
 
-  .loading-text {
+  .loading-dot-red {
+    background-color: #FE2C55;
+    right: 0;
+  }
+
+  .loading-dot-teal {
+    background-color: #25F4EE;
+    left: 0;
+  }
+
+  @keyframes dotsRotate {
+    0% {
+      transform: rotateY(0deg);
+    }
+    100% {
+      transform: rotateY(360deg);
+    }
+  }
+
+  .loading-title {
     font-size: 16px;
-    color: #666;
-    margin-bottom: 10px;
+    font-weight: 600;
+    color: #161823;
+    margin-bottom: 6px;
   }
 
-  .loading-progress {
-    height: 6px;
-    width: 100%;
-    background-color: #f3f3f3;
-    border-radius: 3px;
-    overflow: hidden;
-    margin-bottom: 10px;
+  .loading-subtitle {
+    font-size: 14px;
+    color: #999;
+    margin-bottom: 20px;
   }
 
-  .progress-bar {
-    height: 100%;
-    width: 0%;
-    background-color: #ff4d4f;
-    animation: progress 3s linear forwards;
+  .loading-timer {
+    font-size: 16px;
+    font-weight: 600;
+    color: #161823;
+    letter-spacing: 1px;
   }
 
-  @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+  /* Payment card logo */
+  .payment-card-logo {
+    width: 36px;
+    height: 24px;
+    object-fit: contain;
+    margin-right: 10px;
   }
 
-  @keyframes progress {
-    0% { width: 0%; }
-    100% { width: 100%; }
-  }
+  /* Payment Modal Container */
+.payment-modal-container {
+  padding: 20px;
+  border-radius: 12px 12px 0 0;
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 414px;
+  max-height: 90vh;
+  overflow-y: auto;
+}
 
-  /* Order Summary Styles */
+/* Account Row */
+.order-account-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+}
+
+.order-account-label {
+  font-size: 15px;
+  color: #161823;
+}
+
+.order-account-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.summary-avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+#summaryUsername {
+  font-size: 15px;
+  color: #161823;
+}
+
+.order-summary-divider {
+  height: 1px;
+  background-color: #e8e8e8;
+  margin: 4px 0;
+}
+
+/* Order Summary Styles */
 .order-summary {
-  background-color: #f9f9f9;
-  border-radius: 8px;
-  padding: 15px;
-  margin-bottom: 20px;
+  padding: 10px 0;
+  margin-bottom: 8px;
 }
 
 .order-item {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 10px;
+  padding: 8px 0;
+  font-size: 15px;
+  color: #161823;
 }
 
 .order-item-total {
   display: flex;
   justify-content: space-between;
-  margin-top: 15px;
-  padding-top: 15px;
-  border-top: 1px solid #eee;
-  font-weight: bold;
+  padding-top: 10px;
+  border-top: 1px solid #e8e8e8;
+  font-weight: 700;
+  font-size: 15px;
+  color: #161823;
 }
 
 /* Payment Methods Styles */
 .payment-methods {
-  margin-bottom: 20px;
+  margin-bottom: 16px;
 }
 
 .payment-method-title {
-  font-weight: bold;
+  font-size: 15px;
+  color: #161823;
   margin-bottom: 10px;
 }
 
 .payment-method-item {
   display: flex;
   align-items: center;
-  padding: 10px;
-  border: 1px solid #eee;
+  padding: 12px;
+  border: 1px solid #e8e8e8;
   border-radius: 8px;
   margin-bottom: 10px;
   cursor: pointer;
 }
 
 .payment-method-item.selected {
-  border-color: #ff4d4f;
-  background-color: #fff8f8;
-}
-
-.payment-method-item img {
-  width: 40px;
-  margin-right: 10px;
+  border-color: #161823;
+  background-color: #fff;
 }
 
 .payment-method-details {
   flex: 1;
 }
 
-.card-number {
-  font-size: 14px;
-  color: #666;
-}
-
-.add-card-btn {
+.payment-card-row {
   display: flex;
   align-items: center;
-  padding: 10px;
-  border: 1px dashed #ccc;
-  border-radius: 8px;
-  color: #666;
+  gap: 6px;
+  font-size: 15px;
+  color: #161823;
+}
+
+.payment-card-row b {
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.card-dots {
+  color: #161823;
+  letter-spacing: 1px;
+  font-size: 12px;
+}
+
+.card-last4 {
+  font-weight: 600;
+}
+
+/* Terms */
+.order-terms {
+  font-size: 12px;
+  color: #999;
+  line-height: 1.5;
+  margin-bottom: 12px;
+}
+
+.order-terms b {
+  color: #161823;
+  font-weight: 600;
+}
+
+/* Location */
+.order-location {
+  font-size: 13px;
+  color: #161823;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* Pay Now Button */
+.pay-now-btn {
+  background-color: #FE2C55;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 14px;
+  width: 100%;
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+  margin-bottom: 8px;
+}
+
+.pay-now-btn:active {
+  opacity: 0.9;
+}
+
+/* Recharge Bottom Button */
+.recharge-btn-bottom {
+  background-color: #FE2C55;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 14px;
+  width: 100%;
+  font-weight: 600;
+  font-size: 16px;
   cursor: pointer;
 }
 
-.plus-icon {
-  width: 20px;
-  height: 20px;
-  background-color: #f1f1f1;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-right: 10px;
-  font-size: 16px;
-}
-
-.add-card-btn span {
-  flex: 1;
+.recharge-btn-bottom:active {
+  opacity: 0.9;
 }
 
 @media screen and (min-width: 768px) {
@@ -571,7 +705,7 @@ body {
 }
 
 .header .login-section {
-  margin-left: auto;
+  display: none !important;
 }
 
 .header .login-btn {
